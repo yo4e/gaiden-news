@@ -3,7 +3,7 @@
 外電通信（Gaiden News Network）の公式サイト用リポジトリです。
 
 - 公開予定ドメイン: https://gaiden.news/
-- 運営媒体: [AI外電](https://ai-gaiden.pages.dev/)
+- 運営媒体: [AI外電](https://ai.gaiden.news/)
 
 外部ライブラリやJavaScriptを使わない、リポジトリ直下の静的HTMLから開始します。
 
