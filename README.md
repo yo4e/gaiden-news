@@ -5,4 +5,13 @@
 - 公開予定ドメイン: https://gaiden.news/
 - 運営媒体: [AI外電](https://ai-gaiden.pages.dev/)
 
-サイトは外部依存のない静的HTMLから開始し、必要に応じて段階的に拡張します。
+外部ライブラリやJavaScriptを使わない、リポジトリ直下の静的HTMLから開始します。
+
+## Cloudflare Pages
+
+- Framework preset: `None`
+- Build command: なし
+- Build output directory: `/`
+- Production branch: `main`
+
+デプロイ後にCloudflare Pagesへ `gaiden.news` をカスタムドメインとして追加します。
