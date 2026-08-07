@@ -1,0 +1,19 @@
+---
+import { getEntry, render } from 'astro:content';
+import EditorialLayout from '../layouts/EditorialLayout.astro';
+import PlainLayout from '../layouts/PlainLayout.astro';
+import { ACTIVE_THEME } from '../config/themes';
+
+const page = await getEntry('pages', 'gaiden');
+
+if (!page) {
+  throw new Error('src/content/pages/gaiden.md が見つかりません。');
+}
+
+const { Content } = await render(page);
+const Layout = ACTIVE_THEME === 'plain' ? PlainLayout : EditorialLayout;
+---
+
+<Layout {...page.data}>
+  <Content />
+</Layout>

@@ -1,0 +1,56 @@
+---
+import DocumentShell from './DocumentShell.astro';
+import { SITE } from '../config/site';
+import '../styles/themes/editorial-2026.css';
+
+interface Props {
+  title: string;
+  description: string;
+  tagline: string;
+  eyebrow: string;
+  canonical: string;
+  robots?: string;
+}
+
+const props = Astro.props;
+---
+
+<DocumentShell
+  title={props.title}
+  description={props.description}
+  canonical={props.canonical}
+  robots={props.robots}
+  bodyClass="theme-editorial-2026"
+>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="wordmark" href="/" aria-label={`${SITE.name} トップ`}>{SITE.name}</a>
+      <p class="site-header__note">{SITE.englishName}</p>
+    </div>
+  </header>
+
+  <main>
+    <header class="hero">
+      <div class="container">
+        <p class="eyebrow">{props.eyebrow}</p>
+        <h1>{props.title}</h1>
+        <p class="hero__lead">{props.tagline}</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <article class="article-copy">
+          <slot />
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>© {SITE.foundedYear} {SITE.name}</p>
+      <p><a href={SITE.issuesUrl}>お問い合わせ・不具合報告</a></p>
+    </div>
+  </footer>
+</DocumentShell>

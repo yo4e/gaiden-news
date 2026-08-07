@@ -1,0 +1,45 @@
+---
+import DocumentShell from './DocumentShell.astro';
+import { SITE } from '../config/site';
+import '../styles/plain.css';
+
+interface Props {
+  title: string;
+  description: string;
+  tagline: string;
+  eyebrow: string;
+  canonical: string;
+  robots?: string;
+}
+
+const props = Astro.props;
+---
+
+<DocumentShell
+  title={props.title}
+  description={props.description}
+  canonical={props.canonical}
+  robots={props.robots}
+  bodyClass="theme-plain"
+>
+  <header class="plain-site-header">
+    <a href="/">{SITE.name}</a>
+    <span>{SITE.englishName}</span>
+  </header>
+
+  <main class="plain-main">
+    <header class="plain-intro">
+      <h1>{props.title}</h1>
+      <p>{props.tagline}</p>
+    </header>
+
+    <article class="plain-content">
+      <slot />
+    </article>
+  </main>
+
+  <footer class="plain-footer">
+    <p>© {SITE.foundedYear} {SITE.name}</p>
+    <p><a href={SITE.issuesUrl}>お問い合わせ・不具合報告</a></p>
+  </footer>
+</DocumentShell>

@@ -1,0 +1,160 @@
+body.theme-editorial-2026 {
+  --background: #f5f3ee;
+  --surface: #fffdf8;
+  --text: #192026;
+  --muted: #687078;
+  --line: #d8d4ca;
+  --accent: #184e68;
+  --max-width: 68rem;
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.8;
+}
+
+body.theme-editorial-2026 *,
+body.theme-editorial-2026 *::before,
+body.theme-editorial-2026 *::after {
+  box-sizing: border-box;
+}
+
+body.theme-editorial-2026 a {
+  color: inherit;
+}
+
+body.theme-editorial-2026 a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+body.theme-editorial-2026 .container {
+  width: min(calc(100% - 2.5rem), var(--max-width));
+  margin-inline: auto;
+}
+
+body.theme-editorial-2026 .site-header {
+  border-bottom: 1px solid var(--line);
+}
+
+body.theme-editorial-2026 .site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.5rem;
+  gap: 1.5rem;
+}
+
+body.theme-editorial-2026 .wordmark {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+body.theme-editorial-2026 .site-header__note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+body.theme-editorial-2026 .hero {
+  padding: clamp(5rem, 11vw, 9rem) 0 clamp(4rem, 8vw, 7rem);
+}
+
+body.theme-editorial-2026 .eyebrow {
+  margin: 0 0 1.25rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+body.theme-editorial-2026 h1,
+body.theme-editorial-2026 h2,
+body.theme-editorial-2026 h3,
+body.theme-editorial-2026 p {
+  margin-top: 0;
+}
+
+body.theme-editorial-2026 h1 {
+  max-width: 11ch;
+  margin-bottom: 1.5rem;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(3.2rem, 10vw, 7.5rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+}
+
+body.theme-editorial-2026 .hero__lead {
+  max-width: 34rem;
+  margin-bottom: 0;
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  line-height: 1.65;
+}
+
+body.theme-editorial-2026 .section {
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  border-top: 1px solid var(--line);
+}
+
+body.theme-editorial-2026 .article-copy {
+  max-width: 46rem;
+}
+
+body.theme-editorial-2026 .article-copy h2 {
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+body.theme-editorial-2026 .article-copy h2:first-child {
+  margin-top: 0;
+}
+
+body.theme-editorial-2026 .article-copy h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.35rem;
+}
+
+body.theme-editorial-2026 .article-copy ul {
+  padding-left: 1.4rem;
+}
+
+body.theme-editorial-2026 .article-copy li + li {
+  margin-top: 0.55rem;
+}
+
+body.theme-editorial-2026 .site-footer {
+  padding: 2.5rem 0 3rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+body.theme-editorial-2026 .site-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+body.theme-editorial-2026 .site-footer p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 46rem) {
+  body.theme-editorial-2026 .site-header__note {
+    display: none;
+  }
+
+  body.theme-editorial-2026 .site-footer__inner {
+    display: grid;
+  }
+}
