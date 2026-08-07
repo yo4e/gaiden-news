@@ -18,23 +18,33 @@
    デザインを変更しても、トップURL、ページタイトル、見出し階層、主要リンク、SEO情報は原則として維持する。
 
 4. **PlainLayoutを常設する**  
-   白地・黒文字・JavaScript不要の `PlainLayout.astro` を非常用として保持する。大胆な改装が破綻した場合でも、内容を失わず即時に簡素な表示へ戻せるようにする。
+   白地・黒文字・JavaScript不要の `PlainLayout.astro` を常設する。通常テーマとしても非常用としても使用でき、大胆な改装が破綻した場合でも内容を失わず即時に簡素な表示へ戻せるようにする。
 
 5. **テーマは追加し、旧テーマをすぐ削除しない**  
-   半年ごとの改装では既存テーマを直接破壊せず、新しいレイアウトとCSSを追加する。公開後に安定を確認してから旧テーマの整理を判断する。
+   改装では既存テーマを直接破壊せず、新しいレイアウトとCSSを追加する。公開後に安定を確認してから旧テーマの整理を判断する。
+
+## 現在の公開状態
+
+2026年8月7日にCloudflare PagesをAstroビルドへ切り替えた。Productionは `main` を `npm run build` でビルドし、`dist` を配信している。
+
+現在の `DEFAULT_THEME` は `plain` で、トップ `/` もPlainLayoutを使用する。`/plain/` は同じPlainLayoutを常設確認用として生成し、検索登録を避けるため `noindex` とする。
+
+`editorial-2026` は削除せず、既存の代替テーマとして保持する。
 
 ## ディレクトリの役割
 
 ```text
 src/content/pages/gaiden.md          掲載内容の正本
 src/layouts/DocumentShell.astro      SEO・HTML文書の共通基盤
-src/layouts/EditorialLayout.astro    現行デザイン
-src/layouts/PlainLayout.astro        非常用の簡素デザイン
-src/styles/themes/                   通常テーマのCSS
+src/layouts/PlainLayout.astro        現在の既定・非常用の簡素デザイン
+src/layouts/EditorialLayout.astro    保持中の編集デザイン
 src/styles/plain.css                 PlainLayout専用CSS
+src/styles/themes/                   代替・将来テーマのCSS
 src/config/themes.ts                 使用テーマの選択
 src/pages/index.astro                正本とテーマを結合する入口
 src/pages/plain.astro                PlainLayoutの常設確認ページ
+public/favicon.png                   Plainテーマ用ファビコン
+index.html                           Astro障害時の最小静的フォールバック
 ```
 
 ## テーマの契約
@@ -52,7 +62,7 @@ src/pages/plain.astro                PlainLayoutの常設確認ページ
 
 ## テーマの切り替え
 
-既定テーマは `src/config/themes.ts` の `DEFAULT_THEME` で決める。
+既定テーマは `src/config/themes.ts` の `DEFAULT_THEME` で決める。現在は `plain`。
 
 ビルド時に環境変数を指定すれば、コードを変更せず切り替えられる。
 
@@ -61,13 +71,13 @@ PUBLIC_GAIDEN_THEME=plain npm run build
 PUBLIC_GAIDEN_THEME=editorial-2026 npm run build
 ```
 
-Cloudflare側で `PUBLIC_GAIDEN_THEME=plain` を設定して再デプロイすれば、非常用表示へ戻せる。
+Cloudflare Pages側でも `PUBLIC_GAIDEN_THEME` を設定して再デプロイすれば、コード上の既定値を変更せず公開テーマを切り替えられる。環境変数を設定しない場合は `DEFAULT_THEME` を使う。
 
 `/plain/` は常にPlainLayoutで生成し、公開テーマを切り替える前の確認に使う。重複ページとして検索登録されないよう `noindex` を指定する。
 
-## 半年ごとのデザイン変更手順
+## デザイン変更手順
 
-1. Figmaで新デザインを作る。
+1. Figma等で新デザインを作る。
 2. 新しい `○○Layout.astro` とテーマCSSを追加する。
 3. Markdown本文を一切変更せず、新テーマで全内容が読めることを確認する。
 4. モバイル、キーボード操作、文字拡大、リンク、見出し階層を確認する。
@@ -88,14 +98,18 @@ Figmaには、文章を書き換えるのではなく、既存の意味構造へ
 
 ## ロールバック方針
 
-改装で問題が起きた場合は、修正を急いで継ぎ足すより、まずPlainLayoutへ戻して情報公開を維持する。
+新しいテーマで問題が起きた場合は、修正を急いで継ぎ足すより、まずPlainLayoutへ戻して情報公開を維持する。
 
-1. `PUBLIC_GAIDEN_THEME=plain` に変更して再デプロイする。
-2. 新テーマを別ブランチで修正する。
-3. Previewで確認後、通常テーマへ戻す。
+1. `PUBLIC_GAIDEN_THEME=plain` を設定して再デプロイする、または `DEFAULT_THEME` を `plain` に戻す。
+2. 新テーマを修正する。
+3. Previewで確認後、必要に応じて通常テーマへ戻す。
+
+現在はすでに `plain` が既定なので、この状態自体が安全側のベースラインになる。
 
 サイトの役割は情報を公開し続けることであり、装飾を維持することではない。
 
-## 現行の静的HTMLについて
+## 静的HTMLフォールバック
 
-リポジトリ直下の `index.html` は、Cloudflare Pagesをビルドなしで公開している現行サイトの退避用として当面残す。Cloudflareの設定をAstroビルドへ切り替えた後は、`src/content/pages/gaiden.md` と `src/pages/index.astro` が正本となる。
+リポジトリ直下の `index.html` は、現在のAstro Productionでは配信されない。Cloudflare Pagesは `dist` を公開しているため、通常表示の正本は `src/content/pages/gaiden.md` と `src/pages/index.astro` である。
+
+ルート `index.html` は、Astroまたはビルド系の障害時にCloudflare Pagesを一時的に静的公開へ戻す場合の最小フォールバックとして保持する。掲載情報を二重管理しないため、詳細本文は持たせない。
