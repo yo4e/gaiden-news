@@ -18,6 +18,24 @@
 
 `editorial-2026` は既存の代替テーマとしてリポジトリに保持しています。
 
+## お着替えテーマを実装するとき
+
+**最初に [`docs/THEME_IMPLEMENTATION_RULES.md`](docs/THEME_IMPLEMENTATION_RULES.md) を読んでください。**
+
+この文書が、Figma、Codex、ChatGPT、その他のAIや人間が新しいお着替えテーマを設計・実装するときの実装上の正本です。
+
+特に次を定めています。
+
+- お着替えテーマでは先進的・実験的なWebデザインを積極的に試してよい
+- 本文の正本 `gaiden.md` はデザイン都合で変更しない
+- Plainを常設の安全地帯として壊さない
+- Astro自体が使えない場合に備え、ルート `index.html` を最終静的フォールバックとして保持する
+- 新テーマは既存テーマを上書きせず、新しいテーマIDとして追加する
+- 以前のお着替えテーマは原則として残す
+- 新テーマに問題があれば、まず `plain` へ退避して情報公開を維持する
+
+AI実装エージェント向けの入口として、ルートに [`AGENTS.md`](AGENTS.md) も置いています。
+
 ## 構成方針
 
 掲載内容とデザインを分離し、本文は `src/content/pages/gaiden.md` を唯一の正本とします。
@@ -29,7 +47,7 @@
 - テーマ選択: `src/config/themes.ts`
 - Plain用ファビコン: `public/favicon.png`
 
-設計思想と着せ替え手順は [`docs/DESIGN_ARCHITECTURE.md`](docs/DESIGN_ARCHITECTURE.md) を参照してください。
+設計思想の背景は [`docs/DESIGN_ARCHITECTURE.md`](docs/DESIGN_ARCHITECTURE.md)、具体的なテーマ実装ルールは [`docs/THEME_IMPLEMENTATION_RULES.md`](docs/THEME_IMPLEMENTATION_RULES.md) を参照してください。
 
 ## 掲載内容の更新
 
