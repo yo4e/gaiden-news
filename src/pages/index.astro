@@ -1,6 +1,7 @@
 ---
 import { getEntry, render } from 'astro:content';
 import EditorialLayout from '../layouts/EditorialLayout.astro';
+import KineticLayout from '../layouts/KineticLayout.astro';
 import PlainLayout from '../layouts/PlainLayout.astro';
 import { ACTIVE_THEME } from '../config/themes';
 
@@ -11,7 +12,11 @@ if (!page) {
 }
 
 const { Content } = await render(page);
-const Layout = ACTIVE_THEME === 'plain' ? PlainLayout : EditorialLayout;
+const Layout = ACTIVE_THEME === 'plain'
+  ? PlainLayout
+  : ACTIVE_THEME === 'kinetic-2026'
+    ? KineticLayout
+    : EditorialLayout;
 ---
 
 <Layout {...page.data}>
