@@ -1,0 +1,134 @@
+---
+import DocumentShell from './DocumentShell.astro';
+import { SITE } from '../config/site';
+import '../styles/themes/kinetic-2026.css';
+
+interface Props {
+  title: string;
+  description: string;
+  tagline: string;
+  eyebrow: string;
+  canonical: string;
+  robots?: string;
+}
+
+const props = Astro.props;
+const tickerItems = [
+  'AI外電 試験運用開始 ── 2026年8月',
+  '外電通信、独自ドメイン gaiden.news 取得',
+  '世界の一次情報を日本語圏へ届ける',
+  '海外公式発表を毎日観測・翻訳・配信',
+  'AI、テクノロジー、ゲーム、カルチャー分野で展開予定',
+];
+---
+
+<DocumentShell
+  title={props.title}
+  description={props.description}
+  canonical={props.canonical}
+  robots={props.robots}
+  bodyClass="theme-kinetic-2026"
+  themeColor="#080806"
+>
+  <a class="kinetic-skip-link" href="#main-content">本文へ移動</a>
+
+  <div class="kinetic-ticker" aria-hidden="true">
+    <div class="kinetic-ticker__track">
+      {[...tickerItems, ...tickerItems, ...tickerItems].map((item) => (
+        <span class="kinetic-ticker__item">▶ {item}</span>
+      ))}
+    </div>
+  </div>
+
+  <header class="kinetic-header">
+    <div class="kinetic-container kinetic-header__inner">
+      <a class="kinetic-wordmark" href="/" aria-label={`${SITE.name} トップ`}>
+        <span>{SITE.name}</span>
+        <small>{SITE.englishName}</small>
+      </a>
+      <time class="kinetic-clock" data-jst-clock dateTime="">
+        --:--:-- JST
+      </time>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="kinetic-hero" aria-labelledby="hero-title">
+      <div class="kinetic-container">
+        <p class="kinetic-eyebrow">
+          <span class="kinetic-eyebrow__rule" aria-hidden="true"></span>
+          {props.eyebrow}<span aria-hidden="true"> ── </span>SINCE {SITE.foundedYear}
+          <span class="kinetic-eyebrow__rule kinetic-eyebrow__rule--faint" aria-hidden="true"></span>
+        </p>
+
+        <h1 id="hero-title" class="kinetic-hero__title">{props.title}</h1>
+
+        <div class="kinetic-hero__bottom">
+          <p class="kinetic-hero__english" aria-hidden="true">GAIDEN</p>
+          <p class="kinetic-hero__tagline">{props.tagline}</p>
+        </div>
+
+        <div class="kinetic-hero__rule" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="kinetic-main" aria-label="外電通信の詳細">
+      <div class="kinetic-container kinetic-main__grid">
+        <article class="kinetic-content">
+          <slot />
+        </article>
+
+        <aside class="kinetic-aside" aria-hidden="true">
+          <div class="kinetic-monitor">
+            <div class="kinetic-monitor__top">
+              <span>TRANSMISSION</span>
+              <span class="kinetic-live"><i></i> LIVE</span>
+            </div>
+            <p class="kinetic-monitor__signal">PUBLIC<br />KNOWLEDGE</p>
+            <div class="kinetic-monitor__footer">
+              <span>SOURCE / TRANSLATION / CONTEXT</span>
+              <span>2026—</span>
+            </div>
+          </div>
+
+          <div class="kinetic-aside__rail">
+            <span>FIELD 01</span>
+            <span>FIELD 02</span>
+            <span>FIELD 03</span>
+            <span>FIELD 04</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="kinetic-footer">
+    <div class="kinetic-container kinetic-footer__inner">
+      <div class="kinetic-footer__brand">
+        <span>{SITE.name}</span>
+        <small>© {SITE.foundedYear}</small>
+      </div>
+      <a href={SITE.issuesUrl}>GitHub Issues →</a>
+    </div>
+  </footer>
+
+  <script is:inline>
+    const clock = document.querySelector('[data-jst-clock]');
+
+    const updateJstClock = () => {
+      if (!clock) return;
+      const now = new Date();
+      const time = now.toLocaleTimeString('ja-JP', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZone: 'Asia/Tokyo',
+      });
+      clock.textContent = `${time} JST`;
+      clock.dateTime = now.toISOString();
+    };
+
+    updateJstClock();
+    window.setInterval(updateJstClock, 1000);
+  </script>
+</DocumentShell>

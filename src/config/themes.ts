@@ -1,4 +1,4 @@
-export const THEME_IDS = ['editorial-2026', 'plain'] as const;
+export const THEME_IDS = ['editorial-2026', 'kinetic-2026', 'plain'] as const;
 
 export type ThemeId = (typeof THEME_IDS)[number];
 

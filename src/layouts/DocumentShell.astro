@@ -7,6 +7,7 @@ interface Props {
   canonical: string;
   robots?: string;
   bodyClass?: string;
+  themeColor?: string;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   canonical,
   robots = 'index, follow',
   bodyClass,
+  themeColor = '#ffffff',
 } = Astro.props;
 
 const pageTitle = `${title}｜世界の一次情報を、日本語圏の公共知へ。`;
@@ -29,7 +31,7 @@ const isPlainTheme = bodyClass?.split(/\s+/).includes('theme-plain') ?? false;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content={themeColor} />
     {isPlainTheme && <link rel="icon" type="image/png" href="/favicon.png" />}
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
