@@ -96,3 +96,9 @@ PUBLIC_GAIDEN_THEME=editorial-2026 npm run dev
 リポジトリ直下の `index.html` は、Astroの公開成果物には含まれません。現在のProductionは `dist` を配信しているため、通常のサイト表示には使用されません。
 
 このファイルは、Astro/ビルド系の障害時にCloudflare Pagesを一時的に静的公開へ戻す場合の最小フォールバックとして保持しています。
+
+## ライセンスと権利
+
+サイトのソフトウェアコードは [MIT License](./LICENSE) で公開しています。
+
+一方、外電通信の本文・編集コンテンツ、名称・ロゴ・favicon等のブランド素材は MIT License の対象ではありません。コードの再利用条件と、コンテンツ・ブランドの権利条件は [`RIGHTS.md`](./RIGHTS.md) を参照してください。
